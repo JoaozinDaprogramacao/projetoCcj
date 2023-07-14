@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head th:replace="~{base :: head}"></head>
+<body>
+	<div th:replace="~{base :: header}"></div>
+	<main
+		class="d-flex justify-content-center align-items-center mt-3 mb-3">
+		<form th:action="@{/cliente/cadastrar}" method="post" class="container border rounded p-5">
+			<div class="mb-3">
+				<label for="razaoSocial"  class="form-label">Razão Social</label> <input type="text" class="form-control"
+					id="razaoSocial" name="razaoSocial" placeholder="Bruno Alves Coutinho Ltda." required>
+			</div>
+			<div class="mb-3">
+				<label for="cnpj" class="form-label">Cnpj</label> <input name="cnpj" type="text" class="form-control"
+					id="cnpj" placeholder="37.779.080.0001-35" required>
+			</div>
+			<div class="mb-3">
+				<label for="mesFeito" class="form-label">Ultimo Mês Feito</label> <input name="mesFeito" type="date" class="form-control"
+					id="mesFeito" placeholder="37.779.080.0001-35">
+			</div>
+			  <button type="submit" class="btn btn-primary">Cadastrar</button>
+		</form>
+	</main>
+</body>
+</html>

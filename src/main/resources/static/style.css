@@ -1,0 +1,22 @@
+.titulo {
+	font-family: 'Oswald', sans-serif;
+}
+
+.image-ok {
+	width: 25px;
+}
+
+.situacao {
+	margin-left: 10px;
+}
+
+.clientes {
+	margin-top: 10px;
+	background-color: #D3D3D3;
+	padding: 30px;
+	border-radius: 10px;
+}
+
+.cliente {
+	border-bottom: 1px solid black;
+}

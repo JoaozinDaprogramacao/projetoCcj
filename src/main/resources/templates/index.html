@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head th:replace="~{base :: head}"></head>
+<body>
+	<div th:replace="~{base :: header}"></div>
+	<main
+		class="d-flex justify-content-center align-items-center mt-3 mb-3">
+		<div class="container">
+			<div class="cabecalho"></div>
+			<label>Quantidade Atrasada: </label> <label class="text-danger"
+				th:text="${quantidadeAtrasada}"></label>
+			<div class="clientes">
+				<form id="meuFormulario" action="index/salvar" method="post"
+					class="row mt-3 cliente" th:each="cliente, index : ${clientes}"
+					onsubmit="interceptarEnvio(event)">
+					<div>
+						<div class="col">
+							<label class="d-block" th:text="${cliente.id}">01</label> <input
+								type="hidden" name="id" th:value="${cliente.id}" />
+						</div>
+						<div class="col">
+							<label class="d-block" th:text="${cliente.razaoSocial}">Edvan</label>
+						</div>
+						<div class="col">
+							<label class="d-block" th:text="${cliente.cnpj}">08.809.869.0001-93</label>
+						</div>
+						<div class="col">
+							<div class="input-group input-group-sm mb-3">
+								<input type="date" th:value="${cliente.ultimoMesFeito}"
+									class="d-block form-control" name="mesInput">
+								<div th:if="${cliente.situacao} == ${ok}"
+									class="situacao d-block">
+									<img class="image-ok" src="/imgs/correto.png" alt="ok">
+								</div>
+								<div th:if="${cliente.situacao} == ${atrasada}"
+									class="situacao d-block">
+									<img class="image-ok" src="/imgs/irregular.png" alt="atrasada">
+								</div>
+							</div>
+						</div>
+						<div class="col mb-3">
+							<input type="submit" class="btn btn-success flex-fill"
+								value="Salvar" formaction="/index/salvar"> <input
+								type="submit" class="btn btn-warning flex-fill"
+								value="Descartar" formaction="/index/descartar"> <input
+								type="submit" class="btn btn-danger flex-fill" value="Excluir"
+								formaction="/index/excluir" onclick="confirmacao()">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</main>
+</body>
+<script>
+	var continuar = true;
+	function confirmacao() {
+		if (confirm("Deseja realmente executar esta ação?")) {
+			document.getElementById("meuFormulario").submit();
+		} else {
+			document.getElementById("meuFormulario").reset();
+			continuar = false;
+		}
+	}
+
+	function interceptarEnvio(event) {
+		event.preventDefault();
+		return continuar;
+	}
+</script>
+</html>
